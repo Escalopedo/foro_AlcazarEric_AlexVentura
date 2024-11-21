@@ -1,7 +1,3 @@
-CREATE DATABASE foro;
-
-USE foro;
-
 -- Crear tabla de usuarios
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,

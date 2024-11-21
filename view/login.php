@@ -22,7 +22,24 @@
     <main>
         <div class="form-container">
             <h2>Iniciar Sesión</h2>
-            <form action="procesar_login.php" method="POST">
+
+            <!-- Mostrar el mensaje de error si existe -->
+            <?php 
+                // Iniciar sesión para obtener el mensaje de error
+                session_start(); 
+                if (isset($_SESSION['error_message'])): 
+            ?>
+                <div class="error-message">
+                    <?php
+                        // Mostrar el mensaje de error y luego eliminarlo de la sesión
+                        echo htmlspecialchars($_SESSION['error_message']);
+                        unset($_SESSION['error_message']);
+                    ?>
+                </div>
+                <br>
+            <?php endif; ?>
+
+            <form action="../php/procLogin.php" method="POST">
                 <label for="usuario">Usuario:</label>
                 <input type="text" id="usuario" name="usuario" required placeholder="Ingrese su usuario">
                 
