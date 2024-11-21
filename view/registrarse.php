@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,21 +26,34 @@
     <main>
         <div class="form-container">
             <h2>Registrarse</h2>
-            <form action="procesar_registro.php" method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Ingrese su nombre">
+            
+            <?php
+            // Mostrar mensajes de error o éxito
+            if (isset($_SESSION['error_message'])) {
+                echo '<p class="error">' . $_SESSION['error_message'] . '</p>';
+                unset($_SESSION['error_message']);
+            }
+            if (isset($_SESSION['success_message'])) {
+                echo '<p class="success">' . $_SESSION['success_message'] . '</p>';
+                unset($_SESSION['success_message']);
+            }
+            ?>
+
+            <form action="../php/procesar_registro.php" method="POST">
+                <label for="nombre">Nombre Real:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
                 
                 <label for="usuario">Nombre de Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required placeholder="Elija un nombre de usuario">
+                <input type="text" id="usuario" name="usuario" placeholder="Elija un nombre de usuario">
                 
                 <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" required placeholder="Ingrese su correo electrónico">
+                <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico">
                 
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required placeholder="Ingrese su contraseña">
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
                 
                 <label for="confirmar_contrasena">Confirmar Contraseña:</label>
-                <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required placeholder="Repita su contraseña">
+                <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" placeholder="Repita su contraseña">
                 
                 <button type="submit">Registrarse</button>
             </form>

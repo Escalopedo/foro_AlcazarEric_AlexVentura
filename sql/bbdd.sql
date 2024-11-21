@@ -1,7 +1,8 @@
--- Crear tabla de usuarios
+-- Crear tabla de usuarios con el nuevo campo nombre_real_usuario
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
+    nombre_real_usuario VARCHAR(100) NOT NULL, -- Nuevo campo para el nombre real
     correo VARCHAR(100) NOT NULL UNIQUE,
     contraseña VARCHAR(255) NOT NULL
 );
@@ -24,7 +25,6 @@ CREATE TABLE respuestas (
     fecha_creacion TIMESTAMP
 );
 
-
 -- Agregar claves foráneas
 -- Relación entre preguntas y usuarios
 ALTER TABLE preguntas
@@ -40,4 +40,3 @@ FOREIGN KEY (id_pregunta) REFERENCES preguntas(id) ON DELETE CASCADE;
 ALTER TABLE respuestas
 ADD CONSTRAINT fk_respuestas_usuario
 FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE;
-

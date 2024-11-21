@@ -41,10 +41,10 @@
 
             <form action="../php/procLogin.php" method="POST">
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required placeholder="Ingrese su usuario">
+                <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
                 
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required placeholder="Ingrese su contraseña">
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
                 
                 <button type="submit">Ingresar</button>
             </form>
