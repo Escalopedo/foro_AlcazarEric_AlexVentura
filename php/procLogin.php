@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Iniciar sesión y redirigir al usuario
                 $_SESSION['id_usuario'] = $user['id'];
                 $_SESSION['nombre_usuario'] = $user['nombre_usuario'];
-                header("Location: ../php/foro.php"); // Redirigir a la página principal del foro
+                header("Location: ../view/foro.php"); // Redirigir a la página principal del foro
                 exit();
             } else {
                 // Contraseña incorrecta

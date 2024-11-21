@@ -1,13 +1,10 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse - FORO</title>
+    <script src="../js/valiRegistro.js"></script>
     <link rel="stylesheet" href="../css/registro.css">
 </head>
 <body>
@@ -26,24 +23,13 @@ session_start();
     <main>
         <div class="form-container">
             <h2>Registrarse</h2>
-            
-            <?php
-            // Mostrar mensajes de error o éxito
-            if (isset($_SESSION['error_message'])) {
-                echo '<p class="error">' . $_SESSION['error_message'] . '</p>';
-                unset($_SESSION['error_message']);
-            }
-            if (isset($_SESSION['success_message'])) {
-                echo '<p class="success">' . $_SESSION['success_message'] . '</p>';
-                unset($_SESSION['success_message']);
-            }
-            ?>
+            <form name="registration_form" action="../php/procRegistro.php" method="POST" onsubmit="validateRegistration(event)">
 
-            <form action="../php/procesar_registro.php" method="POST">
-                <label for="nombre">Nombre Real:</label>
+                <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
-                
-                <label for="usuario">Nombre de Usuario:</label>               
+                <div id="nameError" class="error-message"></div>
+
+                <label for="usuario">Nombre de Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Elija un nombre de usuario">
                 <div id="userError" class="error-message"></div>
 
@@ -58,6 +44,18 @@ session_start();
                 <label for="confirmar_contrasena">Confirmar Contraseña:</label>
                 <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" placeholder="Repita su contraseña">
                 <div id="confirmPasswordError" class="error-message"></div>
+
+                <?php
+                // Mostrar mensajes de error o éxito
+                if (isset($_SESSION['error_message'])) {
+                    echo '<p class="error">' . $_SESSION['error_message'] . '</p>';
+                    unset($_SESSION['error_message']);
+                }
+                if (isset($_SESSION['success_message'])) {
+                    echo '<p class="success">' . $_SESSION['success_message'] . '</p>';
+                    unset($_SESSION['success_message']);
+                }
+                ?>
 
                 <button type="submit">Registrarse</button>
             </form>
