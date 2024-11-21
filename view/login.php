@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <script src="../js/valiLogin.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
@@ -22,23 +23,8 @@
     <main>
         <div class="form-container">
             <h2>Iniciar Sesión</h2>
-            <?php 
-                // Iniciar sesión para obtener el mensaje de error
-                session_start(); 
-                if (isset($_SESSION['error_message'])): 
-            ?>
-                <div class="error-message">
-                    <?php
-                        // Mostrar el mensaje de error y luego eliminarlo de la sesión
-                        echo htmlspecialchars($_SESSION['error_message']);
-                        unset($_SESSION['error_message']);
-                    ?>
-                </div>
-                <br>
-            <?php endif; ?>
-
-            <form action="../php/procLogin.php" method="POST">
-            <label for="usuario">Usuario:</label>
+            <form name="login_form" action="procesar_login.php" method="POST" onsubmit="validateLogin(event)">
+                <label for="usuario">Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
                 <span id="userError" class="error-message"></span>
                 <br>
