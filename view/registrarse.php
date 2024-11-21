@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página con Header Sencillo</title>
-    <link rel="stylesheet" href="../css/styles.css"> <!-- Enlazar CSS externo -->
+    <link rel="stylesheet" href="../css/registro.css"> <!-- Enlazar CSS externo -->
 </head>
 <body>
     <header>

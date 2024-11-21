@@ -1,10 +1,11 @@
-/* Archivo CSS para el diseño del header */
-
 /* General */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
 /* Header */
@@ -53,17 +54,82 @@ header nav ul li a:hover {
 
 /* Main Section */
 main {
+    max-width: 1200px;
+    margin: 20px auto;
     padding: 20px;
-    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 main h2 {
     color: #333;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 main p {
     font-size: 18px;
     color: #666;
+    text-align: center;
+}
+
+/* Preguntas */
+.preguntas {
+    margin: 0;
+    padding: 0;
+}
+
+.pregunta {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pregunta h3 {
+    margin: 0;
+    color: #007bff;
+    font-size: 20px;
+}
+
+.pregunta p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.pregunta small {
+    color: #888;
+}
+
+/* Respuestas */
+.respuestas {
+    padding-left: 20px;
+    margin-top: 10px;
+    border-left: 3px solid #007bff;
+}
+
+.respuestas h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.respuestas ul {
+    list-style: none;
+    padding: 0;
+}
+
+.respuestas li {
+    margin-bottom: 10px;
+}
+
+.respuestas li p {
+    margin: 0;
+    color: #444;
+}
+
+.respuestas li small {
+    color: #888;
 }
 
 /* Footer */
@@ -75,4 +141,35 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Botones */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
