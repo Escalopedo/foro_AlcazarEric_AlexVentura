@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Header Sencillo</title>
-    <link rel="stylesheet" href="../css/login.css"> <!-- Enlazar CSS externo -->
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
     <header>
@@ -19,6 +19,19 @@
         </div>
     </header>
 
-
+    <main>
+        <div class="form-container">
+            <h2>Iniciar Sesión</h2>
+            <form action="procesar_login.php" method="POST">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required placeholder="Ingrese su usuario">
+                
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required placeholder="Ingrese su contraseña">
+                
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
