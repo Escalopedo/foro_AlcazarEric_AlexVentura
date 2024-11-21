@@ -22,8 +22,6 @@
     <main>
         <div class="form-container">
             <h2>Iniciar Sesión</h2>
-
-            <!-- Mostrar el mensaje de error si existe -->
             <?php 
                 // Iniciar sesión para obtener el mensaje de error
                 session_start(); 
@@ -40,12 +38,16 @@
             <?php endif; ?>
 
             <form action="../php/procLogin.php" method="POST">
-                <label for="usuario">Usuario:</label>
+            <label for="usuario">Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
-                
+                <span id="userError" class="error-message"></span>
+                <br>
+                <br>
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
-                
+                <span id="passwordError" class="error-message"></span>
+                <br>
+                <br>
                 <button type="submit">Ingresar</button>
             </form>
         </div>
