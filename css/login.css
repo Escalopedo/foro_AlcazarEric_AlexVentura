@@ -106,3 +106,14 @@ form button {
 form button:hover {
     background-color: #0056b3;
 }
+
+/* Estilo para mensajes de error */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+input.error {
+    border-color: red;
+}

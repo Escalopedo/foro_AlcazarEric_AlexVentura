@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <script src="../js/valiLogin.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
@@ -22,13 +23,17 @@
     <main>
         <div class="form-container">
             <h2>Iniciar Sesión</h2>
-            <form action="procesar_login.php" method="POST">
+            <form name="login_form" action="procesar_login.php" method="POST" onsubmit="validateLogin(event)">
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required placeholder="Ingrese su usuario">
-                
+                <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
+                <span id="userError" class="error-message"></span>
+                <br>
+                <br>
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required placeholder="Ingrese su contraseña">
-                
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
+                <span id="passwordError" class="error-message"></span>
+                <br>
+                <br>
                 <button type="submit">Ingresar</button>
             </form>
         </div>
