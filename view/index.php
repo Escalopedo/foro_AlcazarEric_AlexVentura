@@ -13,20 +13,12 @@
             <nav>
                 <ul>
                     <li><a href="login.php">Iniciar Sesión</a></li>
-                    <li><a href="registro.php">Registrarse</a></li>
+                    <li><a href="registrarse.php">Registrarse</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section>
-            <h2>Bienvenido a Mi Foro</h2>
-            <p>Este es un ejemplo de página con un header sencillo.</p>
-        </section>
-    </main>
 
-    <footer>
-    </footer>
 </body>
 </html>
