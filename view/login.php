@@ -10,7 +10,9 @@
 <body>
     <header>
         <div class="container">
-        <img src="../img/logo.webp" alt="">
+        <a href="index.php">
+            <img src="../img/logo.webp" alt="Logo">
+        </a>
             <nav>
                 <ul>
                     <li><a href="index.php">Inicio</a></li>

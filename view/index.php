@@ -125,7 +125,9 @@ try {
 <body>
     <header>
         <div class="container">
-        <img src="../img/logo.webp" alt="">
+        <a href="index.php">
+            <img src="../img/logo.webp" alt="Logo">
+        </a>
             <form action="index.php" method="GET">
                 <input type="text" name="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
                 <input type="text" name="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
