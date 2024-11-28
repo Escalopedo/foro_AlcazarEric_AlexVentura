@@ -199,6 +199,13 @@ footer {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.7);
 }
 
+/* CSS para mensajes de error */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
 footer p {
     margin: 0;
     font-size: 14px;

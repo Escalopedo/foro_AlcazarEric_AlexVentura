@@ -204,6 +204,13 @@ footer p {
     font-size: 14px;
 }
 
+/* CSS para mensajes de error */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
 /* Botones */
 button {
     background-color: #fdd835; /* Amarillo Batman */
