@@ -8,6 +8,12 @@ function validateName() {
         return false;
     }
 
+    if (nameField.value.trim().length < 3) {
+        nameError.textContent = "El nombre debe contener mínimo 3 caracteres";
+        nameField.classList.add("error");
+        return false;
+    }
+
     nameError.textContent = "";
     nameField.classList.remove("error");
     return true;
@@ -19,6 +25,12 @@ function validateUser() {
 
     if (userField.value.trim() === "") {
         userError.textContent = "El nombre de usuario no puede estar vacío";
+        userField.classList.add("error");
+        return false;
+    }
+
+    if (userField.value.trim().length < 3) {
+        userError.textContent = "El nombre de usuario debe contener mínimo 3 caracteres";
         userField.classList.add("error");
         return false;
     }
@@ -97,6 +109,6 @@ function validateRegistration(event) {
     const isConfirmPasswordValid = validateConfirmPassword();
 
     if (isNameValid && isUserValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
-        document.forms["registration_form"].submit(); // Envía el formulario si todo es válido
+        document.forms["registration_form"].submit(); // Enviamos el formulario si todo es válido
     }
 }
