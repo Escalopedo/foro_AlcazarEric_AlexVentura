@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>FORO</h1>
+        <img src="../img/logo.webp" alt="">
             <nav>
                 <ul>
                     <li><a href="index.php">Inicio</a></li>

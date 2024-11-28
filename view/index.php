@@ -6,6 +6,25 @@ session_start();
 
 // Consultar todas las preguntas con sus respuestas
 try {
+    // Inicializar variables para búsqueda
+    $busqueda_usuario = '';
+    $busqueda_pregunta = '';
+    $filtro = '';
+
+    // Procesar búsqueda por usuario o pregunta
+    if (isset($_GET['buscar'])) {
+        $busqueda_usuario = $_GET['usuario'] ?? '';
+        $busqueda_pregunta = $_GET['pregunta'] ?? '';
+
+        // Construir filtro para la consulta SQL
+        if (!empty($busqueda_usuario)) {
+            $filtro .= " AND u.nombre_usuario LIKE :busqueda_usuario";
+        }
+        if (!empty($busqueda_pregunta)) {
+            $filtro .= " AND (p.titulo LIKE :busqueda_pregunta OR p.contenido LIKE :busqueda_pregunta)";
+        }
+    }
+
     // Consultar preguntas
     $sql_preguntas = "
         SELECT 
@@ -16,9 +35,20 @@ try {
             u.nombre_usuario AS autor_pregunta
         FROM preguntas p
         JOIN usuarios u ON p.id_usuario = u.id
+        WHERE 1=1 $filtro
         ORDER BY p.fecha_creacion DESC
     ";
-    $stmt_preguntas = $pdo->query($sql_preguntas);
+    $stmt_preguntas = $pdo->prepare($sql_preguntas);
+
+    // Asignar parámetros a la consulta si hay filtros
+    if (!empty($busqueda_usuario)) {
+        $stmt_preguntas->bindValue(':busqueda_usuario', '%' . $busqueda_usuario . '%', PDO::PARAM_STR);
+    }
+    if (!empty($busqueda_pregunta)) {
+        $stmt_preguntas->bindValue(':busqueda_pregunta', '%' . $busqueda_pregunta . '%', PDO::PARAM_STR);
+    }
+
+    $stmt_preguntas->execute();
     $preguntas = $stmt_preguntas->fetchAll(PDO::FETCH_ASSOC);
 
     // Consulta para obtener respuestas relacionadas con las preguntas
@@ -94,9 +124,13 @@ try {
 </head>
 <body>
     <header>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         <div class="container">
-            <h1>FORO</h1>
+        <img src="../img/logo.webp" alt="">
+            <form action="index.php" method="GET">
+                <input type="text" name="usuario" placeholder="Buscar por usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
+                <input type="text" name="pregunta" placeholder="Buscar por pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
+                <button type="submit" name="buscar">Buscar</button>
+            </form>
             <nav>
                 <ul>
                     <?php if (isset($_SESSION['id_usuario'])): ?>
@@ -111,6 +145,7 @@ try {
     </header>
 
     <main>
+
         <h2>Preguntas y Respuestas</h2>
 
         <?php if (isset($error_message)): ?>
@@ -160,7 +195,7 @@ try {
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <p>No hay preguntas publicadas aún.</p>
+            <p>No hay preguntas publicadas que coincidan con la búsqueda.</p>
         <?php endif; ?>
 
         <!-- Formulario para hacer una nueva pregunta -->
