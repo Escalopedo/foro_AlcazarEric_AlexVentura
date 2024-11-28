@@ -1,19 +1,26 @@
-/* General */
+@font-face {
+    font-family: 'BatmanForeverAlternate'; /* Nombre de la fuente que has descargado */
+    src: url('../fonts/batmfa__.ttf') format('truetype'); /* Cambia a la ruta de tu archivo .ttf */
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'BatmanForeverAlternate', sans-serif; /* Apunta a la fuente que se carga */
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #f5f5f5; /* Texto claro */
 }
 
 /* Header */
 header {
-    background-color: #007bff;
-    color: white;
+    background-color: #000000; /* Negro puro */
+    color: #fdd835; /* Amarillo inspirado en Batman */
     padding: 15px 20px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 header .container {
@@ -24,10 +31,13 @@ header .container {
     margin: 0 auto;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
+
+header img {
+    width: 100px; /* Ajusta el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción */
+    max-width: 100%; /* Evita que la imagen se desborde */
 }
+
 
 header nav ul {
     list-style: none;
@@ -41,15 +51,30 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: white;
+    color: #fdd835; /* Amarillo Batman */
     text-decoration: none;
     font-size: 16px;
     padding: 5px 10px;
+    transition: background-color 0.3s;
 }
 
 header nav ul li a:hover {
-    background-color: #0056b3;
+    background-color: #444444; /* Gris oscuro */
     border-radius: 5px;
+}
+
+header form input {
+    width: 30%; /* Ajusta el porcentaje a tu preferencia, 30% es un ejemplo */
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'BatmanForever', sans-serif; /* Fuente Batman */
+    font-size: 16px;
+    color: #fdd835;
+    background-color: #2a2a2a; /* Fondo oscuro */
+    border: 2px solid #fdd835; /* Amarillo */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 /* Main Section */
@@ -57,20 +82,21 @@ main {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: #212121; /* Fondo gris oscuro */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 main h2 {
-    color: #333;
+    color: #fdd835;
     margin-bottom: 20px;
     text-align: center;
+    letter-spacing: 2px;
 }
 
 main p {
     font-size: 18px;
-    color: #666;
+    color: #e0e0e0; /* Gris claro */
     text-align: center;
 }
 
@@ -83,35 +109,40 @@ main p {
 .pregunta {
     padding: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #444444; /* Línea gris oscura */
+    background-color: #333333; /* Fondo gris más claro */
+    border-radius: 5px;
 }
 
 .pregunta h3 {
     margin: 0;
-    color: #007bff;
+    color: #fdd835;
     font-size: 20px;
 }
 
 .pregunta p {
     margin: 5px 0;
-    color: #555;
+    color: #cccccc;
 }
 
 .pregunta small {
-    color: #888;
+    color: #888888;
 }
 
 /* Respuestas */
 .respuestas {
     padding-left: 20px;
     margin-top: 10px;
-    border-left: 3px solid #007bff;
+    border-left: 3px solid #fdd835; /* Línea amarilla */
+    background-color: #2a2a2a; /* Fondo oscuro */
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .respuestas h4 {
     margin-bottom: 10px;
     font-size: 18px;
-    color: #333;
+    color: #fdd835;
 }
 
 .respuestas ul {
@@ -125,23 +156,47 @@ main p {
 
 .respuestas li p {
     margin: 0;
-    color: #444;
+    color: #e0e0e0;
 }
 
 .respuestas li small {
-    color: #888;
+    color: #aaaaaa;
+}
+
+/* Inputs y Textarea */
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'BatmanForever', sans-serif; /* Fuente Batman */
+    font-size: 16px;
+    color: #fdd835;
+    background-color: #2a2a2a; /* Fondo oscuro */
+    border: 2px solid #fdd835; /* Amarillo */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #c6a700; /* Amarillo más oscuro */
+    box-shadow: 0 4px 8px rgba(255, 223, 0, 0.8);
+    outline: none;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #000000; /* Fondo negro */
+    color: #fdd835; /* Texto amarillo */
     text-align: center;
     padding: 10px 0;
     position: relative;
     bottom: 0;
     width: 100%;
     margin-top: 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.7);
 }
 
 footer p {
@@ -151,23 +206,26 @@ footer p {
 
 /* Botones */
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: #fdd835; /* Amarillo Batman */
+    color: #000000; /* Texto negro */
     border: none;
     padding: 10px 15px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #c6a700; /* Amarillo más oscuro */
 }
 
 /* Links */
 a {
-    color: #007bff;
+    color: #fdd835;
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:hover {
