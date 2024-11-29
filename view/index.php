@@ -125,18 +125,20 @@ try {
 <body>
     <header>
         <div class="container">
-        <img src="../img/logo.webp" alt="">
+        <a href="index.php">
+            <img src="../img/logo.webp" alt="Logo">
+        </a>
             <form action="index.php" method="GET">
-                <input type="text" name="usuario" placeholder="Buscar por usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
-                <input type="text" name="pregunta" placeholder="Buscar por pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
-                <button type="submit" name="buscar">Buscar</button>
+                <input type="text" name="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
+                <input type="text" name="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
+                <button type="submit" name="buscar">Busca</button>
             </form>
             <nav>
                 <ul>
                     <?php if (isset($_SESSION['id_usuario'])): ?>
                         <li><a href="../php/logout.php">Cerrar sesión</a></li>
                     <?php else: ?>
-                        <li><a href="login.php">Iniciar Sesión</a></li>
+                        <li><a href="login.php">Inicia Sesión</a></li>
                         <li><a href="registrarse.php">Registrarse</a></li>
                     <?php endif; ?>
                 </ul>
