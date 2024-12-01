@@ -29,6 +29,7 @@ try {
     $sql_preguntas = "
         SELECT 
             p.id AS pregunta_id, 
+            p.id_usuario AS autor_id_usuario,
             p.titulo AS pregunta_titulo, 
             p.contenido AS pregunta_contenido, 
             p.fecha_creacion AS pregunta_fecha, 
@@ -184,10 +185,14 @@ try {
 
                         <!-- Formulario para responder -->
                         <?php if (isset($_SESSION['id_usuario'])): ?>
-                            <form action="index.php" method="POST">
-                                <input type="hidden" name="id_pregunta" value="<?php echo $pregunta['pregunta_id']; ?>">
-                                <textarea name="contenido_respuesta" required placeholder="Escribe tu respuesta aquí..."></textarea>
+                            <form action="../php/eliminar_pregunta.php" method="POST">
+                                <input type="hidden" name="pregunta_id" value="<?php echo $pregunta['pregunta_id']; ?>">
+                                <textarea name="contenido_respuesta" placeholder="Escribe tu respuesta aquí..."></textarea>
                                 <button type="submit" name="submit_respuesta">Responder</button>
+                                
+                                <?php if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $pregunta['autor_id_usuario']): ?>
+                                    <button type="submit" name="eliminar_pregunta">Eliminar pregunta</button>
+                                <?php endif; ?>
                             </form>
                         <?php else: ?>
                             <p><a href="login.php">Inicia sesión</a> para responder a esta pregunta.</p>
