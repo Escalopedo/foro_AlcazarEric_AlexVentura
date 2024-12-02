@@ -120,7 +120,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORO</title>
-    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/valiIndex.js" defer></script>
 </head>
 <body>
     <header>
@@ -129,8 +130,8 @@ try {
                 <img src="../img/logo.webp" alt="Logo">
             </a>
             <form action="index.php" method="GET">
-                <input type="text" name="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
-                <input type="text" name="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
+                <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
+                <input type="text" name="pregunta" id="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
                 <button type="submit" name="buscar">Busca</button>
             </form>
             <nav>
@@ -148,6 +149,20 @@ try {
     </header>
 
     <main>
+        <!-- Formulario para hacer una nueva pregunta -->
+        <?php if (isset($_SESSION['id_usuario'])): ?>
+            <div class="nueva-pregunta">
+                <h3>Hacer una nueva pregunta</h3>
+                <form action="index.php" method="POST" onsubmit="return validatePregunta()">
+                    <input type="text" name="titulo" id="titulo" placeholder="Título de la pregunta">
+                    <div id="errorTitulo" class="error-message"></div>
+                    <textarea name="contenido" id="contenido" placeholder="Escribe tu pregunta aquí..."></textarea>
+                    <div id="errorContenido" class="error-message"></div>
+                    <button type="submit" name="submit_pregunta">Publicar Pregunta</button>
+                </form>
+            </div>
+        <?php endif; ?>
+
         <!-- Mensaje para iniciar sesión -->
         <?php if (!isset($_SESSION['id_usuario'])): ?>
             <div class="info-message">
@@ -191,30 +206,19 @@ try {
 
                         <!-- Formulario para responder -->
                         <?php if (isset($_SESSION['id_usuario'])): ?>
-                            <form action="index.php" method="POST">
+                            <form action="index.php" method="POST" onsubmit="return validateRespuesta(<?php echo $pregunta['pregunta_id']; ?>)">
+                                <textarea name="contenido_respuesta" id="contenido_respuesta_<?php echo $pregunta['pregunta_id']; ?>" placeholder="Escribe tu respuesta..."></textarea>
                                 <input type="hidden" name="id_pregunta" value="<?php echo $pregunta['pregunta_id']; ?>">
-                                <textarea name="contenido_respuesta" required placeholder="Escribe tu respuesta aquí..."></textarea>
+                                <div id="errorRespuesta_<?php echo $pregunta['pregunta_id']; ?>" class="error-message"></div>
                                 <button type="submit" name="submit_respuesta">Responder</button>
                             </form>
-                        <?php else: ?>
-                            <p><a href="login.php">Inicia sesión</a> para responder a esta pregunta.</p>
+
                         <?php endif; ?>
                     </div>
-                    <hr>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <p>No hay preguntas publicadas que coincidan con la búsqueda.</p>
-        <?php endif; ?>
-
-        <!-- Formulario para hacer una nueva pregunta -->
-        <?php if (isset($_SESSION['id_usuario'])): ?>
-            <h3>Hacer una nueva pregunta</h3>
-            <form action="index.php" method="POST">
-                <input type="text" name="titulo" required placeholder="Título de la pregunta">
-                <textarea name="contenido" required placeholder="Escribe tu pregunta aquí..."></textarea>
-                <button type="submit" name="submit_pregunta">Publicar Pregunta</button>
-            </form>
+            <p>No hay preguntas disponibles.</p>
         <?php endif; ?>
     </main>
 </body>
