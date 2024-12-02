@@ -121,6 +121,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORO</title>
+    <script src="../js/valiIndex.js"></script>
     <link rel="stylesheet" href="../css/styles.css"> 
 </head>
 <body>
@@ -208,9 +209,12 @@ try {
         <!-- Formulario para hacer una nueva pregunta -->
         <?php if (isset($_SESSION['id_usuario'])): ?>
             <h3>Hacer una nueva pregunta</h3>
-            <form action="index.php" method="POST">
-                <input type="text" name="titulo" required placeholder="Título de la pregunta">
-                <textarea name="contenido" required placeholder="Escribe tu pregunta aquí..."></textarea>
+            <form action="index.php" id="formNuevaPregunta" method="POST">
+                <input type="text" name="titulo" id="titulo_nueva_pregunta"  placeholder="Título de la pregunta">
+                <span class="errorNuevaPregunta" id="errorTituloPregunta"></span>
+                <textarea name="contenido" id="contenido_nueva_pregunta" placeholder="Escribe tu pregunta aquí..."></textarea>
+                <span class="errorNuevaPregunta" id="errorContenidoPregunta"></span>
+                <br>
                 <button type="submit" name="submit_pregunta">Publicar Pregunta</button>
             </form>
         <?php else: ?>
