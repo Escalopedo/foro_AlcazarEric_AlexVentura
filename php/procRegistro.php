@@ -50,6 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error_message'] = "El correo electrónico no es válido.";
+            header("Location: ../view/registrarse.php");
+            exit();
+        }        
+
         // Hashear la contraseña
         $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
