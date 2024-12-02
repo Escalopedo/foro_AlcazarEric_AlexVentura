@@ -136,6 +136,7 @@ try {
             <nav>
                 <ul>
                     <?php if (isset($_SESSION['id_usuario'])): ?>
+                        <li><a href="../view/perfil.php">Perfil</a></li>
                         <li><a href="../php/logout.php">Cerrar sesión</a></li>
                     <?php else: ?>
                         <li><a href="login.php">Inicia Sesión</a></li>
