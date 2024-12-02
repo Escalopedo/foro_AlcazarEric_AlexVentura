@@ -64,6 +64,9 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
+    <script src="../js/valiPerfil.js" defer></script>
+
 </head>
 <body>
     <header>
@@ -93,10 +96,10 @@ try {
                         <p><small><strong>Fecha:</strong> <?php echo htmlspecialchars($pregunta['fecha_creacion']); ?></small></p>
 
                         <!-- Formulario para editar la pregunta -->
-                        <form action="perfil.php" method="POST" class="edit-form">
+                        <form action="perfil.php" method="POST" class="edit-form" onsubmit="return validateEditForm(event)">
                             <input type="hidden" name="id_pregunta" value="<?php echo $pregunta['id']; ?>">
-                            <input type="text" name="titulo" value="<?php echo htmlspecialchars($pregunta['titulo']); ?>" required>
-                            <textarea name="contenido" required><?php echo htmlspecialchars($pregunta['contenido']); ?></textarea>
+                            <input type="text" name="titulo" value="<?php echo htmlspecialchars($pregunta['titulo']); ?>">
+                            <textarea name="contenido"><?php echo htmlspecialchars($pregunta['contenido']); ?></textarea>
                             <button type="submit" name="edit_pregunta">Guardar Cambios</button>
                         </form>
 
