@@ -131,7 +131,6 @@ try {
             <img src="../img/logo.webp" alt="Logo">
         </a>
 
-        <!-- Mostrar el formulario de búsqueda solo si el usuario está logueado -->
             <form action="index.php" method="GET">
                 <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
                 <input type="text" name="pregunta" id="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
