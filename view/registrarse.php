@@ -6,6 +6,7 @@
     <title>Registrarse - FORO</title>
     <script src="../js/valiRegistro.js"></script>
     <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
 </head>
 <body>
     <header>

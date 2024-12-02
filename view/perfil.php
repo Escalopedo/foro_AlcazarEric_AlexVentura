@@ -64,6 +64,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
     <script src="../js/valiPerfil.js" defer></script>
 
 </head>

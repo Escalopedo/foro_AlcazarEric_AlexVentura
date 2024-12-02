@@ -121,32 +121,37 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORO</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
     <script src="../js/valiIndex.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="index.php">
-                <img src="../img/logo.webp" alt="Logo">
-            </a>
+<header>
+    <div class="container">
+        <a href="index.php">
+            <img src="../img/logo.webp" alt="Logo">
+        </a>
+
+        <!-- Mostrar el formulario de búsqueda solo si el usuario está logueado -->
             <form action="index.php" method="GET">
                 <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
                 <input type="text" name="pregunta" id="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
-                <button type="submit" name="buscar">Busca</button>
+                <button type="submit" name="buscar">Buscar</button>
             </form>
-            <nav>
-                <ul>
-                    <?php if (isset($_SESSION['id_usuario'])): ?>
-                        <li><a href="../view/perfil.php">Perfil</a></li>
-                        <li><a href="../php/logout.php">Cerrar sesión</a></li>
-                    <?php else: ?>
-                        <li><a href="login.php">Inicia Sesión</a></li>
-                        <li><a href="registrarse.php">Registrarse</a></li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
+        <nav>
+            <ul>
+                <?php if (isset($_SESSION['id_usuario'])): ?>
+                    <li><a href="../view/perfil.php">Perfil</a></li>
+                    <li><a href="../php/logout.php">Cerrar sesión</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Inicia Sesión</a></li>
+                    <li><a href="registrarse.php">Registrarse</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </div>
+</header>
+
 
     <main>
         <!-- Formulario para hacer una nueva pregunta -->
