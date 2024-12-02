@@ -125,9 +125,9 @@ try {
 <body>
     <header>
         <div class="container">
-        <a href="index.php">
-            <img src="../img/logo.webp" alt="Logo">
-        </a>
+            <a href="index.php">
+                <img src="../img/logo.webp" alt="Logo">
+            </a>
             <form action="index.php" method="GET">
                 <input type="text" name="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
                 <input type="text" name="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
@@ -147,6 +147,12 @@ try {
     </header>
 
     <main>
+        <!-- Mensaje para iniciar sesión -->
+        <?php if (!isset($_SESSION['id_usuario'])): ?>
+            <div class="info-message">
+                <p><a href="login.php">Inicia sesión</a> para hacer una nueva pregunta.</p>
+            </div>
+        <?php endif; ?>
 
         <h2>Preguntas y Respuestas</h2>
 
@@ -208,10 +214,7 @@ try {
                 <textarea name="contenido" required placeholder="Escribe tu pregunta aquí..."></textarea>
                 <button type="submit" name="submit_pregunta">Publicar Pregunta</button>
             </form>
-        <?php else: ?>
-            <p><a href="login.php">Inicia sesión</a> para hacer una nueva pregunta.</p>
         <?php endif; ?>
-
     </main>
 </body>
 </html>
