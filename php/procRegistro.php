@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validación de contraseñas
     if ($contrasena !== $confirmar_contrasena) {
         $_SESSION['error_message'] = "Las contraseñas no coinciden.";
-        header("Location: ../view/registrarse.php");
-        exit();
+        header("Location: ../view/registrarse.php");  // Redirigir a la página de registro
+        exit();  // Asegúrate de que el script termine aquí
     }
 
     // Validar la longitud de la contraseña

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <script src="../js/valiLogin.js"></script>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
 </head>
 <body>
     <header>

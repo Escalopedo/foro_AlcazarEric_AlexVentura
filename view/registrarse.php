@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse - FORO</title>
     <script src="../js/valiRegistro.js"></script>
-    <link rel="stylesheet" href="../css/registro.css">
+    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
 </head>
 <body>
     <header>
@@ -30,22 +31,27 @@
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
                 <div id="nameError" class="error-message"></div>
+                <br>
 
                 <label for="usuario">Nombre de Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Elija un nombre de usuario">
                 <div id="userError" class="error-message"></div>
+                <br>
 
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico">
                 <div id="emailError" class="error-message"></div>
+                <br>
 
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
                 <div id="passwordError" class="error-message"></div>
+                <br>
 
                 <label for="confirmar_contrasena">Confirmar Contraseña:</label>
                 <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" placeholder="Repita su contraseña">
                 <div id="confirmPasswordError" class="error-message"></div>
+                <br>
 
                 <?php
                 // Mostrar mensajes de error o éxito

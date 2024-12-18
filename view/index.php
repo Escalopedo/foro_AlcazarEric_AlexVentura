@@ -29,7 +29,6 @@ try {
     $sql_preguntas = "
         SELECT 
             p.id AS pregunta_id, 
-            p.id_usuario AS autor_id_usuario,
             p.titulo AS pregunta_titulo, 
             p.contenido AS pregunta_contenido, 
             p.fecha_creacion AS pregunta_fecha, 
@@ -121,34 +120,60 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORO</title>
-    <script src="../js/valiIndex.js"></script>
-    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../img/logo.webp" type="image/webp">
+    <script src="../js/valiIndex.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
+<header>
+    <div class="container">
         <a href="index.php">
             <img src="../img/logo.webp" alt="Logo">
         </a>
+
+        <!-- Mostrar el formulario de búsqueda solo si el usuario está logueado -->
             <form action="index.php" method="GET">
-                <input type="text" name="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
-                <input type="text" name="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
-                <button type="submit" name="buscar">Busca</button>
+                <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="<?php echo htmlspecialchars($busqueda_usuario); ?>">
+                <input type="text" name="pregunta" id="pregunta" placeholder="Pregunta" value="<?php echo htmlspecialchars($busqueda_pregunta); ?>">
+                <button type="submit" name="buscar">Buscar</button>
             </form>
-            <nav>
-                <ul>
-                    <?php if (isset($_SESSION['id_usuario'])): ?>
-                        <li><a href="../php/logout.php">Cerrar sesión</a></li>
-                    <?php else: ?>
-                        <li><a href="login.php">Inicia Sesión</a></li>
-                        <li><a href="registrarse.php">Registrarse</a></li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
+        <nav>
+            <ul>
+                <?php if (isset($_SESSION['id_usuario'])): ?>
+                    <li><a href="../view/perfil.php">Perfil</a></li>
+                    <li><a href="../php/logout.php">Cerrar sesión</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Inicia Sesión</a></li>
+                    <li><a href="registrarse.php">Registrarse</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </div>
+</header>
+
 
     <main>
+        <!-- Formulario para hacer una nueva pregunta -->
+        <?php if (isset($_SESSION['id_usuario'])): ?>
+            <div class="nueva-pregunta">
+                <h3>Hacer una nueva pregunta</h3>
+                <form action="index.php" method="POST" onsubmit="return validatePregunta()">
+                    <input type="text" name="titulo" id="titulo" placeholder="Título de la pregunta">
+                    <div id="errorTitulo" class="error-message"></div>
+                    <textarea name="contenido" id="contenido" placeholder="Escribe tu pregunta aquí..."></textarea>
+                    <div id="errorContenido" class="error-message"></div>
+                    <button type="submit" name="submit_pregunta">Publicar Pregunta</button>
+                </form>
+            </div>
+        <?php endif; ?>
+
+        <!-- Mensaje para iniciar sesión -->
+        <?php if (!isset($_SESSION['id_usuario'])): ?>
+            <div class="info-message">
+                <p><a href="login.php">Inicia sesión</a> para hacer una nueva pregunta.</p>
+            </div>
+        <?php endif; ?>
 
         <h2>Preguntas y Respuestas</h2>
 
@@ -186,41 +211,20 @@ try {
 
                         <!-- Formulario para responder -->
                         <?php if (isset($_SESSION['id_usuario'])): ?>
-                            <form action="../php/eliminar_pregunta.php" method="POST">
-                                <input type="hidden" name="pregunta_id" value="<?php echo $pregunta['pregunta_id']; ?>">
-                                <textarea name="contenido_respuesta" placeholder="Escribe tu respuesta aquí..."></textarea>
+                            <form action="index.php" method="POST" onsubmit="return validateRespuesta(<?php echo $pregunta['pregunta_id']; ?>)">
+                                <textarea name="contenido_respuesta" id="contenido_respuesta_<?php echo $pregunta['pregunta_id']; ?>" placeholder="Escribe tu respuesta..."></textarea>
+                                <input type="hidden" name="id_pregunta" value="<?php echo $pregunta['pregunta_id']; ?>">
+                                <div id="errorRespuesta_<?php echo $pregunta['pregunta_id']; ?>" class="error-message"></div>
                                 <button type="submit" name="submit_respuesta">Responder</button>
-                                
-                                <?php if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $pregunta['autor_id_usuario']): ?>
-                                    <button type="submit" name="eliminar_pregunta">Eliminar pregunta</button>
-                                <?php endif; ?>
                             </form>
-                        <?php else: ?>
-                            <p><a href="login.php">Inicia sesión</a> para responder a esta pregunta.</p>
+
                         <?php endif; ?>
                     </div>
-                    <hr>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <p>No hay preguntas publicadas que coincidan con la búsqueda.</p>
+            <p>No hay preguntas disponibles.</p>
         <?php endif; ?>
-
-        <!-- Formulario para hacer una nueva pregunta -->
-        <?php if (isset($_SESSION['id_usuario'])): ?>
-            <h3>Hacer una nueva pregunta</h3>
-            <form action="index.php" id="formNuevaPregunta" method="POST">
-                <input type="text" name="titulo" id="titulo_nueva_pregunta"  placeholder="Título de la pregunta">
-                <span class="errorNuevaPregunta" id="errorTituloPregunta"></span>
-                <textarea name="contenido" id="contenido_nueva_pregunta" placeholder="Escribe tu pregunta aquí..."></textarea>
-                <span class="errorNuevaPregunta" id="errorContenidoPregunta"></span>
-                <br>
-                <button type="submit" name="submit_pregunta">Publicar Pregunta</button>
-            </form>
-        <?php else: ?>
-            <p><a href="login.php">Inicia sesión</a> para hacer una nueva pregunta.</p>
-        <?php endif; ?>
-
     </main>
 </body>
 </html>
