@@ -31,11 +31,11 @@ function validatePassword() {
 function validateLogin(event) {
     event.preventDefault(); // Evita que el formulario se envíe directamente
 
-    // Llamamos a las funciones de validación
+    // Llama a las funciones de validación
     const isUserValid = validateUser();
     const isPasswordValid = validatePassword();
 
-    // Verificamos si ambas validaciones son correctas
+    // Verifica si ambas validaciones son correctas
     if (isUserValid && isPasswordValid) {
         // Si las validaciones son correctas, envía el formulario
         document.forms["login_form"].submit();
